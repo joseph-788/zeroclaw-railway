@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  zeroclaw-ai:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+      ADMIN_IDS: ${ADMIN_IDS}
+      NVIDIA_NIM_API_KEY: ${NVIDIA_NIM_API_KEY}
+      NVIDIA_NIM_BASE_URL: ${NVIDIA_NIM_BASE_URL}
+      SERPER_API_KEY: ${SERPER_API_KEY}
+      DEFAULT_MODEL: ${DEFAULT_MODEL}
+      LOG_LEVEL: debug
+    volumes:
+      - ./logs:/app/logs
+      - ./src:/app/src
+    restart: unless-stopped
+    networks:
+      - zeroclaw-network
+
+networks:
+  zeroclaw-network:
+    driver: bridge
