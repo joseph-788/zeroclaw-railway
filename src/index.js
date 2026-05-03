@@ -38,10 +38,15 @@ app.post('/api/chat', express.json(), async (req, res) => {
 });
 
 // API endpoint for model list
-app.get('/api/models', (req, res) => {
-  const { nvidiaClient } = await import('./services/nvidia-nim.js');
-  const models = nvidiaClient.getAvailableModels();
-  res.json({ models });
+app.get('/api/models', async (req, res) => {
+  try {
+    const { nvidiaClient } = await import('./services/nvidia-nim.js');
+    const models = nvidiaClient.getAvailableModels();
+    res.json({ models });
+  } catch (error) {
+    logger.error('API Error', { error: error.message });
+    res.status(500).json({ error: error.message });
+  }
 });
 
 // 404 handler
