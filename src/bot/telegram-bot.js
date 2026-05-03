@@ -39,12 +39,6 @@ class TelegramBot {
     // Help command
     this.bot.command('help', (ctx) => commands.help(ctx));
 
-    // Chat command
-    this.bot.command('chat', (ctx) => {
-      const args = ctx.message.text.replace('/chat', '').trim();
-      commands.chat(ctx, args);
-    });
-
     // Model commands
     this.bot.command('model', (ctx) => {
       const args = ctx.message.text.replace('/model', '').trim();
@@ -86,10 +80,10 @@ class TelegramBot {
 
     this.bot.command('status', (ctx) => commands.status(ctx));
 
-    // Text message handler
+    // Text message handler - direct chat
     this.bot.on(message('text'), (ctx) => {
       if (!ctx.message.text.startsWith('/')) {
-        ctx.reply('ℹ️ Please use commands. Type /help for available commands.');
+        commands.chat(ctx, ctx.message.text);
       }
     });
 

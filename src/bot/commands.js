@@ -15,8 +15,10 @@ export const commands = {
 
 I'm an AI assistant powered by Nvidia NIM API with full terminal access.
 
+*How it works:*
+Just send me any message and I'll respond with AI-powered answers!
+
 *Available Commands:*
-/chat <prompt> - Chat with AI
 /model [name] - Switch model
 /models - List available models
 /search <query> - Web search
@@ -33,10 +35,8 @@ I'm an AI assistant powered by Nvidia NIM API with full terminal access.
     ctx.reply(`
 📖 *ZeroClaw AI Agent Help*
 
-*LLM Chat Commands:*
-/chat <prompt> - Chat with current AI model
-/summarize <text> - Summarize text
-/translate <text> to <language> - Translate text
+*Chat:*
+Just send any message directly - it will be processed by the AI
 
 *Model Management:*
 /model [name] - Switch to model (kimi-k2.6, deepseek-v4-pro, glm-5.1)
@@ -51,10 +51,9 @@ I'm an AI assistant powered by Nvidia NIM API with full terminal access.
 /execute <command> - Run shell command
 /git <args> - Run git command
 /status - System status
-/logs - View recent logs
 
 *Examples:*
-/chat Write a Python script to sort a list
+Just type: "Write a Python script to sort a list"
 /model deepseek-v4-pro
 /search artificial intelligence latest news
 /execute ls -la /home
